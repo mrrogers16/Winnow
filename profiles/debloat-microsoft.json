@@ -1,0 +1,55 @@
+{
+  "name": "debloat-microsoft",
+  "description": "Removes Microsoft in-box apps that most people never open. Every entry removes BOTH the installed package and the provisioned copy - otherwise it returns on the next feature update or new user profile.",
+  "actions": [
+    { "id": "appx-bing-news",        "type": "appx", "package": "Microsoft.BingNews",                     "description": "Microsoft News" },
+    { "id": "appx-bing-weather",     "type": "appx", "package": "Microsoft.BingWeather",                  "description": "MSN Weather" },
+    { "id": "appx-bing-translator",  "type": "appx", "package": "Microsoft.BingTranslator",               "description": "Translator" },
+    { "id": "appx-solitaire",        "type": "appx", "package": "Microsoft.MicrosoftSolitaireCollection", "description": "Ad-supported Solitaire" },
+    { "id": "appx-office-hub",       "type": "appx", "package": "Microsoft.MicrosoftOfficeHub",           "description": "'Get Office' upsell tile - NOT your Office install" },
+    { "id": "appx-get-help",         "type": "appx", "package": "Microsoft.GetHelp",                      "description": "Get Help support chat" },
+    { "id": "appx-feedback-hub",     "type": "appx", "package": "Microsoft.WindowsFeedbackHub",           "description": "Feedback Hub" },
+    { "id": "appx-todos",            "type": "appx", "package": "Microsoft.Todos",                        "description": "Microsoft To Do" },
+    { "id": "appx-zune-music",       "type": "appx", "package": "Microsoft.ZuneMusic",                    "description": "Media Player" },
+    { "id": "appx-clipchamp",        "type": "appx", "package": "Clipchamp.Clipchamp",                    "description": "Clipchamp video editor" },
+    { "id": "appx-power-automate",   "type": "appx", "package": "Microsoft.PowerAutomateDesktop",         "description": "Power Automate Desktop" },
+    { "id": "appx-family",           "type": "appx", "package": "MicrosoftCorporationII.MicrosoftFamily", "description": "Family Safety" },
+    { "id": "appx-alarms",           "type": "appx", "package": "Microsoft.WindowsAlarms",                "description": "Alarms & Clock" },
+    { "id": "appx-sound-recorder",   "type": "appx", "package": "Microsoft.WindowsSoundRecorder",         "description": "Sound Recorder" },
+    { "id": "appx-sticky-notes",     "type": "appx", "package": "Microsoft.MicrosoftStickyNotes",         "description": "Sticky Notes - exclude this one if you use it" },
+    { "id": "appx-widgets",          "type": "appx", "package": "MicrosoftWindows.Client.WebExperience",  "description": "Widgets panel - the taskbar widget button disappears" },
+    { "id": "appx-widgets-runtime",  "type": "appx", "package": "Microsoft.WidgetsPlatformRuntime",       "description": "Widgets platform runtime" },
+    { "id": "appx-dev-home",         "type": "appx", "package": "Microsoft.Windows.DevHome",              "description": "Dev Home (deprecated by Microsoft)" },
+    { "id": "appx-start-experiences","type": "appx", "package": "Microsoft.StartExperiencesApp",          "description": "Start menu 'Recommended' section" },
+    { "id": "appx-bing-search",      "type": "appx", "package": "Microsoft.BingSearch",                   "description": "Web results in Start menu search. Local search is unaffected." },
+    { "id": "appx-teams",            "type": "appx", "package": "MSTeams",                                "description": "Consumer Microsoft Teams" },
+    { "id": "appx-outlook-new",      "type": "appx", "package": "Microsoft.OutlookForWindows",            "description": "New Outlook. Classic Outlook from Office is separate and unaffected." },
+    { "id": "appx-quick-assist",     "type": "appx", "package": "MicrosoftCorporationII.QuickAssist",     "description": "Remote assistance - keep if anyone remotes in to help you" },
+    { "id": "appx-your-phone",       "type": "appx", "package": "Microsoft.YourPhone",                    "description": "Phone Link" },
+    { "id": "appx-cross-device",     "type": "appx", "package": "MicrosoftWindows.CrossDevice",           "description": "Phone Link cross-device component" },
+    { "id": "appx-xbox-app",         "type": "appx", "package": "Microsoft.GamingApp",                    "description": "Xbox app" },
+    { "id": "appx-xbox-tcui",        "type": "appx", "package": "Microsoft.Xbox.TCUI",                    "description": "Xbox title callable UI" },
+    { "id": "appx-xbox-overlay",     "type": "appx", "package": "Microsoft.XboxGamingOverlay",            "description": "Game Bar - also drives Auto HDR toggles and some FPS overlays" },
+    { "id": "appx-xbox-identity",    "type": "appx", "package": "Microsoft.XboxIdentityProvider",         "description": "Xbox sign-in - keep if you use Game Pass" },
+    { "id": "appx-xbox-speech",      "type": "appx", "package": "Microsoft.XboxSpeechToTextOverlay",      "description": "Xbox speech-to-text overlay" },
+
+    {
+      "id": "search-bing-disable",
+      "type": "registry",
+      "description": "Disable Bing web results in Start menu search",
+      "path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Search",
+      "value": "BingSearchEnabled",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "search-no-suggestions",
+      "type": "registry",
+      "description": "Disable search box web suggestions",
+      "path": "HKCU:\\SOFTWARE\\Policies\\Microsoft\\Windows\\Explorer",
+      "value": "DisableSearchBoxSuggestions",
+      "data": 1,
+      "kind": "DWord"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "name": "oem-msi",
+  "description": "MSI laptop OEM layer. Deliberately KEEPS MSI Center core (MSI_Center_Service, MSI Foundation Service, Micro Star SCM) because on gaming laptops those control fan curves, Cooler Boost and the battery charge limit. Removing them leaves you on firmware defaults.",
+  "actions": [
+    {
+      "id": "appx-nahimic",
+      "type": "appx",
+      "description": "Nahimic audio enhancement layer. Realtek audio works without it. NOTE: reinstalling the Realtek audio driver brings this back.",
+      "package": "A-Volute.Nahimic"
+    },
+    {
+      "id": "svc-nahimic",
+      "type": "service",
+      "description": "Nahimic service - installs into C:\\Windows\\System32, so path-based OEM filters miss it",
+      "service": "NahimicService",
+      "startupType": "Disabled",
+      "stop": true
+    },
+    {
+      "id": "svc-msi-sendev",
+      "type": "service",
+      "description": "MSI event reporting service. Telemetry only - no effect on fan or performance control.",
+      "service": "MSI Sendevsvc",
+      "startupType": "Disabled",
+      "stop": true
+    },
+    {
+      "id": "svc-lightkeeper",
+      "type": "service",
+      "description": "Mystic Light RGB keeper. Disabling means no keyboard RGB control.",
+      "service": "LightKeeperService",
+      "startupType": "Disabled",
+      "stop": true
+    },
+    {
+      "id": "svc-mystic-light",
+      "type": "service",
+      "description": "Mystic Light RGB service",
+      "service": "Mystic_Light_Service",
+      "startupType": "Disabled",
+      "stop": true
+    },
+    {
+      "id": "task-onedc-updater",
+      "type": "scheduledTask",
+      "description": "MSI silent updater",
+      "taskPath": "\\",
+      "taskName": "OneDC_Updater"
+    },
+    {
+      "id": "task-ledkeeper",
+      "type": "scheduledTask",
+      "description": "Mystic Light task host. WARNING: MSI Center re-arms this at every boot. The durable fix is turning Mystic Light off inside MSI Center's own UI.",
+      "taskPath": "\\",
+      "taskName": "MSI Task Host - LEDKeeper2_Host"
+    },
+    {
+      "id": "appx-intel-optane",
+      "type": "appx",
+      "description": "Branded 'Intel Rapid Storage Technology Application'. The management UI only - the RST driver is separate and unaffected.",
+      "package": "AppUp.IntelOptaneMemoryandStorageManagement"
+    },
+    {
+      "id": "svc-thunderbolt-share",
+      "type": "service",
+      "description": "Intel Thunderbolt Share (PC-to-PC file/screen sharing). Does NOT affect Thunderbolt ports, docks, displays or eGPUs - those run off the controller driver.",
+      "service": "TBService",
+      "startupType": "Disabled",
+      "stop": true
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "name": "browser-hardening",
+  "description": "Stops Edge and Chrome preloading at login and turns off Edge's reporting. Deliberately does NOT disable Edge or WebView2 updates - Windows Search runs on WebView2, and an unpatched browser engine is worse than an unwanted one.",
+  "actions": [
+    {
+      "id": "run-edge-autolaunch",
+      "type": "runValue",
+      "description": "Remove Edge's hidden background preload at login",
+      "hive": "HKCU",
+      "match": "MicrosoftEdgeAutoLaunch_*"
+    },
+    {
+      "id": "run-chrome-autolaunch",
+      "type": "runValue",
+      "description": "Remove Chrome's hidden background preload at login",
+      "hive": "HKCU",
+      "match": "GoogleChromeAutoLaunch_*"
+    },
+    {
+      "id": "edge-startup-boost",
+      "type": "registry",
+      "description": "Stop Edge preloading itself at boot",
+      "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Edge",
+      "value": "StartupBoostEnabled",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "edge-background-mode",
+      "type": "registry",
+      "description": "Stop Edge running in the background after you close it",
+      "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Edge",
+      "value": "BackgroundModeEnabled",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "edge-metrics",
+      "type": "registry",
+      "description": "Disable Edge usage metrics reporting",
+      "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Edge",
+      "value": "MetricsReportingEnabled",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "edge-personalization-reporting",
+      "type": "registry",
+      "description": "Disable Edge personalisation reporting",
+      "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Edge",
+      "value": "PersonalizationReportingEnabled",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "edge-site-info",
+      "type": "registry",
+      "description": "Stop sending site info to improve services",
+      "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Edge",
+      "value": "SendSiteInfoToImproveServices",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "edge-diagnostic-data",
+      "type": "registry",
+      "description": "Disable Edge diagnostic data",
+      "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Edge",
+      "value": "DiagnosticData",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "edge-user-feedback",
+      "type": "registry",
+      "description": "Remove the Edge feedback prompt",
+      "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Edge",
+      "value": "UserFeedbackAllowed",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "edge-recommendations",
+      "type": "registry",
+      "description": "Remove Edge recommendation nags",
+      "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Edge",
+      "value": "ShowRecommendationsEnabled",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "edge-spotlight",
+      "type": "registry",
+      "description": "Disable Edge spotlight experiences",
+      "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Edge",
+      "value": "SpotlightExperiencesAndRecommendationsEnabled",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "edge-hubs-sidebar",
+      "type": "registry",
+      "description": "Remove the Edge sidebar (Copilot)",
+      "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Edge",
+      "value": "HubsSidebarEnabled",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "edge-web-widget",
+      "type": "registry",
+      "description": "Disable the Edge web widget",
+      "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Edge",
+      "value": "WebWidgetAllowed",
+      "data": 0,
+      "kind": "DWord"
+    }
+  ]
+}

@@ -1,0 +1,291 @@
+{
+  "name": "privacy-baseline",
+  "description": "Telemetry, diagnostics and the suggestion/ad engine. Safe on any Windows 10/11 edition. Touches nothing security-related.",
+  "actions": [
+    {
+      "id": "cdm-silent-installs",
+      "type": "registry",
+      "description": "Stop Windows silently installing promotional apps into the Start menu",
+      "path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "value": "SilentInstalledAppsEnabled",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "cdm-preinstalled",
+      "type": "registry",
+      "description": "Block pre-installed suggested apps",
+      "path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "value": "PreInstalledAppsEnabled",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "cdm-oem-preinstalled",
+      "type": "registry",
+      "description": "Block OEM pre-installed suggested apps",
+      "path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "value": "OemPreInstalledAppsEnabled",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "cdm-softlanding",
+      "type": "registry",
+      "description": "Disable SoftLanding promotional content delivery",
+      "path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "value": "SoftLandingEnabled",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "cdm-suggestions",
+      "type": "registry",
+      "description": "Remove suggestions from Settings and Start",
+      "path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "value": "SystemPaneSuggestionsEnabled",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "cdm-subscribed-338389",
+      "type": "registry",
+      "description": "Disable subscribed content feed 338389",
+      "path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "value": "SubscribedContent-338389Enabled",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "cdm-lockscreen-overlay",
+      "type": "registry",
+      "description": "Remove Spotlight tips and ads from the lock screen",
+      "path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "value": "RotatingLockScreenOverlayEnabled",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "cdm-content-delivery",
+      "type": "registry",
+      "description": "Disable content delivery overall",
+      "path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "value": "ContentDeliveryAllowed",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "cdm-feature-management",
+      "type": "registry",
+      "description": "Disable feature management pushes",
+      "path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "value": "FeatureManagementEnabled",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "policy-consumer-features",
+      "type": "registry",
+      "description": "Machine-wide backstop against consumer feature installs",
+      "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent",
+      "value": "DisableWindowsConsumerFeatures",
+      "data": 1,
+      "kind": "DWord"
+    },
+    {
+      "id": "policy-softlanding",
+      "type": "registry",
+      "description": "Machine-wide backstop against SoftLanding",
+      "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent",
+      "value": "DisableSoftLanding",
+      "data": 1,
+      "kind": "DWord"
+    },
+    {
+      "id": "advertising-id",
+      "type": "registry",
+      "description": "Disable the per-user advertising ID",
+      "path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\AdvertisingInfo",
+      "value": "Enabled",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "input-text-collection",
+      "type": "registry",
+      "description": "Stop sampling what you type for personalisation",
+      "path": "HKCU:\\SOFTWARE\\Microsoft\\InputPersonalization",
+      "value": "RestrictImplicitTextCollection",
+      "data": 1,
+      "kind": "DWord"
+    },
+    {
+      "id": "input-ink-collection",
+      "type": "registry",
+      "description": "Stop sampling handwriting for personalisation",
+      "path": "HKCU:\\SOFTWARE\\Microsoft\\InputPersonalization",
+      "value": "RestrictImplicitInkCollection",
+      "data": 1,
+      "kind": "DWord"
+    },
+    {
+      "id": "tailored-experiences",
+      "type": "registry",
+      "description": "Disable tailored experiences based on diagnostic data",
+      "path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Privacy",
+      "value": "TailoredExperiencesWithDiagnosticDataEnabled",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "ceip",
+      "type": "registry",
+      "description": "Disable the Customer Experience Improvement Program",
+      "path": "HKLM:\\SOFTWARE\\Microsoft\\SQMClient\\Windows",
+      "value": "CEIPEnable",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "telemetry-level",
+      "type": "registry",
+      "description": "Request the lowest telemetry level. NOTE: Home and Pro clamp this to 1 (Required); only Enterprise/Education/IoT honour 0.",
+      "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection",
+      "value": "AllowTelemetry",
+      "data": 0,
+      "kind": "DWord"
+    },
+    {
+      "id": "delivery-optimization",
+      "type": "registry",
+      "description": "Stop peer-to-peer sharing of Windows Update content; closes the listener on port 7680",
+      "path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\DeliveryOptimization",
+      "value": "DODownloadMode",
+      "data": 0,
+      "kind": "DWord"
+    },
+
+    {
+      "id": "svc-diagtrack",
+      "type": "service",
+      "description": "Connected User Experiences and Telemetry - the primary telemetry service",
+      "service": "DiagTrack",
+      "startupType": "Disabled",
+      "stop": true
+    },
+    {
+      "id": "svc-dmwappush",
+      "type": "service",
+      "description": "WAP push message routing, a secondary telemetry transport",
+      "service": "dmwappushservice",
+      "startupType": "Disabled",
+      "stop": true
+    },
+
+    {
+      "id": "task-appraiser",
+      "type": "scheduledTask",
+      "description": "Compatibility Appraiser - collects an inventory of installed software",
+      "taskPath": "\\Microsoft\\Windows\\Application Experience\\",
+      "taskName": "Microsoft Compatibility Appraiser Exp"
+    },
+    {
+      "id": "task-marebackup",
+      "type": "scheduledTask",
+      "description": "Appraiser support task",
+      "taskPath": "\\Microsoft\\Windows\\Application Experience\\",
+      "taskName": "MareBackup"
+    },
+    {
+      "id": "task-startupapp",
+      "type": "scheduledTask",
+      "description": "Reports startup app impact data",
+      "taskPath": "\\Microsoft\\Windows\\Application Experience\\",
+      "taskName": "StartupAppTask"
+    },
+    {
+      "id": "task-ceip-consolidator",
+      "type": "scheduledTask",
+      "description": "CEIP data consolidation and upload",
+      "taskPath": "\\Microsoft\\Windows\\Customer Experience Improvement Program\\",
+      "taskName": "Consolidator"
+    },
+    {
+      "id": "task-ceip-usb",
+      "type": "scheduledTask",
+      "description": "CEIP USB device reporting",
+      "taskPath": "\\Microsoft\\Windows\\Customer Experience Improvement Program\\",
+      "taskName": "UsbCeip"
+    },
+    {
+      "id": "task-siuf-dmclient",
+      "type": "scheduledTask",
+      "description": "Feedback client",
+      "taskPath": "\\Microsoft\\Windows\\Feedback\\Siuf\\",
+      "taskName": "DmClient"
+    },
+    {
+      "id": "task-siuf-dmclient-scenario",
+      "type": "scheduledTask",
+      "description": "Feedback scenario downloader",
+      "taskPath": "\\Microsoft\\Windows\\Feedback\\Siuf\\",
+      "taskName": "DmClientOnScenarioDownload"
+    },
+    {
+      "id": "task-sqm",
+      "type": "scheduledTask",
+      "description": "Software Quality Metrics tasks",
+      "taskPath": "\\Microsoft\\Windows\\PI\\",
+      "taskName": "Sqm-Tasks"
+    },
+    {
+      "id": "task-feedback-toast",
+      "type": "scheduledTask",
+      "description": "Prompts you for feedback after performance traces",
+      "taskPath": "\\Microsoft\\Windows\\PerformanceTrace\\",
+      "taskName": "ShowFeedbackToast"
+    },
+    {
+      "id": "task-whesvc-toast",
+      "type": "scheduledTask",
+      "description": "Hardware error feedback toast",
+      "taskPath": "\\Microsoft\\Windows\\PerformanceTrace\\",
+      "taskName": "WhesvcToast"
+    },
+    {
+      "id": "task-sustainability-telemetry",
+      "type": "scheduledTask",
+      "description": "Sustainability telemetry reporting",
+      "taskPath": "\\Microsoft\\Windows\\Sustainability\\",
+      "taskName": "SustainabilityTelemetry"
+    },
+    {
+      "id": "task-disk-diag-collector",
+      "type": "scheduledTask",
+      "description": "Disk diagnostic data collection and upload",
+      "taskPath": "\\Microsoft\\Windows\\DiskDiagnostic\\",
+      "taskName": "Microsoft-Windows-DiskDiagnosticDataCollector"
+    },
+    {
+      "id": "task-autochk-proxy",
+      "type": "scheduledTask",
+      "description": "Autochk SQM data upload",
+      "taskPath": "\\Microsoft\\Windows\\Autochk\\",
+      "taskName": "Proxy"
+    },
+    {
+      "id": "task-wer-queue",
+      "type": "scheduledTask",
+      "description": "Queues Windows Error Reporting uploads",
+      "taskPath": "\\Microsoft\\Windows\\Windows Error Reporting\\",
+      "taskName": "QueueReporting"
+    },
+    {
+      "id": "task-maps-toast",
+      "type": "scheduledTask",
+      "description": "Maps notification task",
+      "taskPath": "\\Microsoft\\Windows\\Maps\\",
+      "taskName": "MapsToastTask"
+    }
+  ]
+}

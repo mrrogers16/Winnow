@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  analyze:
+    name: PSScriptAnalyzer + profile validation
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install PSScriptAnalyzer
+        shell: pwsh
+        run: Install-Module PSScriptAnalyzer -Force -Scope CurrentUser -SkipPublisherCheck
+
+      - name: Validate module manifest
+        shell: pwsh
+        run: Test-ModuleManifest ./Winnow.psd1 | Format-List Name, Version, PowerShellVersion
+
+      - name: Validate profile JSON
+        shell: pwsh
+        run: |
+          $fail = $false
+          Get-ChildItem ./profiles -Filter *.json | ForEach-Object {
+              try {
+                  $p = Get-Content $_.FullName -Raw | ConvertFrom-Json
+                  foreach ($f in 'name','actions') {
+                      if ($p.PSObject.Properties.Name -notcontains $f) {
+                          Write-Host "::error file=$($_.Name)::missing '$f'"; $fail = $true
+                      }
+                  }
+                  $i = 0
+                  foreach ($a in @($p.actions)) {
+                      $i++
+                      foreach ($f in 'id','type') {
+                          if ($a.PSObject.Properties.Name -notcontains $f) {
+                              Write-Host "::error file=$($_.Name)::action #$i missing '$f'"; $fail = $true
+                          }
+                      }
+                  }
+                  Write-Host "ok: $($_.Name) ($(@($p.actions).Count) actions)"
+              } catch {
+                  Write-Host "::error file=$($_.Name)::$($_.Exception.Message)"; $fail = $true
+              }
+          }
+          if ($fail) { exit 1 }
+
+      - name: Check for duplicate action ids
+        shell: pwsh
+        run: |
+          $ids = Get-ChildItem ./profiles -Filter *.json | ForEach-Object {
+              (Get-Content $_.FullName -Raw | ConvertFrom-Json).actions |
+                  ForEach-Object { "$($_.id)" }
+          }
+          $dupes = $ids | Group-Object | Where-Object Count -gt 1
+          if ($dupes) {
+              $dupes | ForEach-Object { Write-Host "::error::duplicate action id '$($_.Name)'" }
+              exit 1
+          }
+          Write-Host "$($ids.Count) action ids, all unique"
+
+      - name: Run PSScriptAnalyzer
+        shell: pwsh
+        run: |
+          $r = Invoke-ScriptAnalyzer -Path . -Recurse -Settings ./PSScriptAnalyzerSettings.psd1
+          if ($r) { $r | Format-Table -AutoSize | Out-String | Write-Host; exit 1 }
+          Write-Host 'PSScriptAnalyzer clean'
+
+      - name: Import module
+        shell: pwsh
+        run: |
+          Import-Module ./Winnow.psd1 -Force
+          Get-Command -Module Winnow | Format-Table -AutoSize
+
+      - name: Smoke test
+        shell: pwsh
+        run: ./tests/smoke.ps1

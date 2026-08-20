@@ -1,0 +1,18 @@
+# Scan output
+WinnowScan-*/
+scans/
+*.log
+
+# Local run journals (machine specific, may contain hostnames/usernames)
+runs/
+*.runjournal.json
+
+# PowerShell
+*.psproj
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
